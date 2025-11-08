@@ -53,6 +53,27 @@ export default function Welcome() {
                                 <br />
                                 We suggest starting with the following.
                             </p>
+                            {!auth.user && (
+                                <div className="mb-6 rounded-lg border border-[#e3e3e0] bg-[#FDFDFC] p-4 dark:border-[#3E3E3A] dark:bg-[#161615]">
+                                    <p className="mb-3 text-sm font-medium text-[#1b1b18] dark:text-[#EDEDEC]">
+                                        Quick Access
+                                    </p>
+                                    <div className="flex flex-col gap-2 sm:flex-row">
+                                        <Link
+                                            href={login()}
+                                            className="inline-flex items-center justify-center rounded-sm border border-[#19140035] bg-white px-4 py-2 text-sm font-medium text-[#1b1b18] transition-colors hover:bg-[#FDFDFC] hover:border-[#1915014a] dark:border-[#3E3E3A] dark:bg-[#161615] dark:text-[#EDEDEC] dark:hover:border-[#62605b]"
+                                        >
+                                            Log in
+                                        </Link>
+                                        <Link
+                                            href={register()}
+                                            className="inline-flex items-center justify-center rounded-sm border border-black bg-[#1b1b18] px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-black dark:border-[#eeeeec] dark:bg-[#eeeeec] dark:text-[#1C1C1A] dark:hover:bg-white"
+                                        >
+                                            Register
+                                        </Link>
+                                    </div>
+                                </div>
+                            )}
                             <ul className="mb-4 flex flex-col lg:mb-6">
                                 <li className="relative flex items-center gap-4 py-2 before:absolute before:top-1/2 before:bottom-0 before:left-[0.4rem] before:border-l before:border-[#e3e3e0] dark:before:border-[#3E3E3A]">
                                     <span className="relative bg-white py-1 dark:bg-[#161615]">

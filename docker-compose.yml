@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+    db:
+        image: postgres:14
+        container_name: laravel_react_inertia_db
+        restart: always
+        environment:
+            POSTGRES_USER: user
+            POSTGRES_PASSWORD: password
+            POSTGRES_DB: laravel_starterkit
+        ports:
+            - "5432:5432"
+        volumes:
+            - db_data:/var/lib/postgresql/data
+        networks:
+            - laravel_starterkit_network
+
+volumes:
+    db_data:
+
+networks:
+    laravel_starterkit_network:
+        driver: bridge
+
