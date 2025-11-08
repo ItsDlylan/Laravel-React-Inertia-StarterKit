@@ -15,6 +15,7 @@ This template combines the power of Laravel 12, Inertia.js v2, and React to deli
 - **Code Quality Tools**: Pre-configured Rector, Laravel Pint, ESLint, and Prettier for automated code formatting and refactoring
 - **Laravel 12**: Built on the latest Laravel framework with streamlined structure and modern PHP 8.4 features
 - **Authentication Ready**: Laravel Fortify integration for authentication flows
+- **API Documentation**: Automatic Postman collection generation from Laravel API routes
 - **AI-Assisted Development**: Integrated AI guidelines and Laravel Boost MCP tools for enhanced development workflow
 
 ### Tech Stack
@@ -39,6 +40,7 @@ This template combines the power of Laravel 12, Inertia.js v2, and React to deli
 - Laravel Pint (Code Formatting)
 - ESLint & Prettier (JavaScript/TypeScript)
 - Pest Browser Testing (Playwright)
+- Laravel Postman (API Documentation)
 
 ## Prerequisites
 
@@ -232,6 +234,68 @@ This installs Playwright and the necessary browser binaries for end-to-end testi
 - **`npm run build`** - Build production assets
 - **`npm run build:ssr`** - Build both client and server-side rendering assets
 - **`npm run lint`** - Run ESLint and Prettier on frontend code
+
+### API Documentation
+
+This starter kit includes [Laravel Postman](https://github.com/yasin-tgh/laravel-postman) for automatically generating Postman collections from your Laravel API routes.
+
+**Pre-generated Collection:**
+
+A starter Postman collection is included in the repository at `storage/postman/api_collection.json`. You can import this directly into Postman to get started quickly. The collection includes:
+
+- Pre-configured authentication variables (Bearer token)
+- Base URL variable set to `http://localhost:8000`
+- Ready-to-use structure for when you add API routes
+
+**Generate/Update Postman Collection:**
+
+After adding API routes, regenerate the collection to include them:
+
+```bash
+php artisan postman:generate
+```
+
+The collection will be saved to `storage/postman/api_collection.json` and can be imported directly into Postman.
+
+**Configuration:**
+
+The Postman configuration is located in `config/postman.php`. Key features:
+
+- **Automatic Route Discovery**: Automatically discovers all API routes with the `api` prefix
+- **FormRequest Integration**: Generates request bodies from FormRequest validation rules
+- **Authentication Support**: Configures Bearer token authentication for protected routes
+- **Flexible Organization**: Routes are organized using nested path strategy by default
+- **Environment Variables**: Use `.env` variables for sensitive authentication data
+
+**Default Configuration:**
+
+- Routes are filtered to include only those with the `api` prefix
+- Authentication is enabled with Bearer token support
+- Protected routes are detected via `auth:api` and `auth:sanctum` middleware
+- Routes are organized using nested path structure
+
+**Customization:**
+
+You can customize the Postman collection generation by editing `config/postman.php`:
+
+- **Route Filtering**: Include/exclude specific routes, middleware, or controllers
+- **Organization Strategy**: Choose between prefix, nested_path, or controller-based grouping
+- **Authentication**: Configure Bearer, Basic Auth, or API Key authentication
+- **Request Formatting**: Customize request naming and body types
+
+**Environment Variables:**
+
+Add these to your `.env` file for Postman authentication (optional):
+
+```env
+POSTMAN_AUTH_TOKEN=your-bearer-token-here
+POSTMAN_AUTH_USER=user@example.com
+POSTMAN_AUTH_PASSWORD=password
+POSTMAN_API_KEY=your-api-key
+POSTMAN_API_KEY_NAME=X-API-KEY
+```
+
+For more details, see the [Laravel Postman documentation](https://github.com/yasin-tgh/laravel-postman).
 
 ## Testing
 
